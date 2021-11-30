@@ -1,0 +1,28 @@
+server:
+  port: 8051
+  servlet:
+    context-path: /jcqbot
+#   application-display-name: cosword  
+  shutdown: graceful # 优雅关机(勿强制杀死进程)
+
+spring:
+  profiles:
+    active: pro, cq
+  application:
+    name: coswords
+  # jackson 序列化对象时，去除 null 属性
+  jackson:
+    default-property-inclusion: non_null
+#  cloud:
+#    config:
+#      enabled: false
+  aop:
+    proxy-target-class: true
+    auto: true
+
+# 日志文件位置
+logging:
+  config: classpath:log4j2-spring.xml # 这个是默认的，可以不写，换了名字就要写
+  level:
+    cn.jay.repository: trace
+ 
