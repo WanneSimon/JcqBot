@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra;
 
-import java.util.regex.Pattern;
-
 /**
  * 纯文本消息，应该不算是组件。
  *

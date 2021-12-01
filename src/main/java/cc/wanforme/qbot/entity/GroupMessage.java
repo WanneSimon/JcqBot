@@ -33,5 +33,4 @@ public class GroupMessage extends MessageEntity {
 		this.auto_escape = auto_escape;
 	}
 	
-	
 }

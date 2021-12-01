@@ -1,5 +1,6 @@
 package cc.wanforme.qbot.handler;
 
+import cc.wanforme.qbot.cqextra.BaseComponent;
 import cc.wanforme.qbot.entity.EventEntity;
 
 /** 基础处理器
@@ -10,7 +11,7 @@ import cc.wanforme.qbot.entity.EventEntity;
 public interface BaseHandler {
 
 	/** 处理的类型 */
-	Class<?> getHandleComponentType();
+	Class<? extends BaseComponent> getHandleComponentType();
 	
 	/** 处理*/
 	void handle(EventEntity entity);

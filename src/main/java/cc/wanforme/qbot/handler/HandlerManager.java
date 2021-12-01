@@ -17,8 +17,17 @@ import cc.wanforme.qbot.entity.message.MessageEntity;
  */
 @Service
 public class HandlerManager {
-
+	private static HandlerManager instance = null;
+	
 	private volatile List<BaseHandler> handlers = new CopyOnWriteArrayList<>();
+	
+	public HandlerManager() {
+		instance = this;
+	}
+	public static HandlerManager getInstance() {
+		return instance;
+	}
+	
 	
 	/** 注册
 	 * @param handler

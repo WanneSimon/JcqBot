@@ -1,5 +1,8 @@
 package cc.wanforme.qbot.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,7 +15,8 @@ import cc.wanforme.qbot.entity.type.MessageTypeEnum;
  * 2021年12月1日
  */
 public class MessageType {
-
+	private static final Logger log = LoggerFactory.getLogger(MessageType.class);
+	
 	/**
 	 * @see #deserilizeMessage(JsonNode, String)
 	 * @param originMessage
@@ -36,15 +40,16 @@ public class MessageType {
 	public static MessageEntity deserilizeMessage(JsonNode json, String originMessage)
 			throws JsonMappingException, JsonProcessingException {
 		 JsonNode type = json.get("sub_type");
-		 if (type==null || type.isEmpty()) {
+		 if (type==null) {
 			 return null;
 		 }
 		 
 		 MessageTypeEnum t = null;
 		 try {
-			 t = MessageTypeEnum.valueOf(type.asText());
+			 t = MessageTypeEnum.valueOf(type.asText().toUpperCase());
 			 return SimpleJackson.toObject(originMessage, t.getClazz());
-		} catch (IllegalArgumentException e) {	
+		} catch (IllegalArgumentException e) {
+			log.error("No such sub_type: " + type.asText(), e);
 			return null;
 		}
 	}

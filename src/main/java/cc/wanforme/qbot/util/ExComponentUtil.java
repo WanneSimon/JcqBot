@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import cc.wanforme.qbot.cqextra.ExtraComponents;
-import cc.wanforme.qbot.excption.JQException;
+import cc.wanforme.qbot.exception.JQException;
 
 /**
  * @author wanne

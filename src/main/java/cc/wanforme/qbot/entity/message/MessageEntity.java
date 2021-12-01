@@ -28,6 +28,11 @@ public class MessageEntity extends EventEntity{
 	private MessageSender sender;
 	// ==== 私聊和群聊共有 - 结束 ====
 
+	// 未知，不清楚是什么
+	private String anonymous;
+	// 消息序列号？
+	private Long message_seq;
+	
 	
 	public MessageEntity() {}
 
@@ -95,4 +100,20 @@ public class MessageEntity extends EventEntity{
 		this.sender = sender;
 	}
 
+	public String getAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(String anonymous) {
+		this.anonymous = anonymous;
+	}
+
+	public Long getMessage_seq() {
+		return message_seq;
+	}
+
+	public void setMessage_seq(Long message_seq) {
+		this.message_seq = message_seq;
+	}
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import cc.wanforme.qbot.cqextra.BaseComponent;
 import cc.wanforme.qbot.cqextra.TextComponent;
 import cc.wanforme.qbot.cqextra.builder.ImageSendBuilder;
 import cc.wanforme.qbot.entity.GroupMessage;
@@ -29,11 +30,11 @@ public class SetuHandler extends MessageHandler{
 	private RestTemplate restTemplate;
 	
 	@Value("${setu.groups}")
-	private String[] groups;
+	private List<String> groups;
 	
 	
 	@Override
-	public Class<?> getHandleComponentType() {
+	public Class<? extends BaseComponent> getHandleComponentType() {
 		return TextComponent.class;
 	}
 
@@ -53,13 +54,14 @@ public class SetuHandler extends MessageHandler{
 //		}
 		boolean allow = true;
 		if(groups != null) {
-			allow = false;
-			for (String g : groups) {
-				if( g == groupId ) {
-					allow = true;
-					break;
-				}
-			}
+			allow = this.groups.contains(groupId);
+//			allow = false;
+//			for (String g : groups) {
+//				if( g == groupId ) {
+//					allow = true;
+//					break;
+//				}
+//			}
 		} 
 		
 		if(!allow) {
