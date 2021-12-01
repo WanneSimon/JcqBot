@@ -21,6 +21,8 @@ public class JcqBotInitializer implements ApplicationRunner{
 	
 	@Autowired
 	private SetuHandler setuHandler;
+	@Autowired
+	private HandlerManager manager;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -35,7 +37,7 @@ public class JcqBotInitializer implements ApplicationRunner{
 	}
 	
 	private void initHandlers() {
-		HandlerManager.register(setuHandler);
+		manager.register(setuHandler);
 	}
 	
 }

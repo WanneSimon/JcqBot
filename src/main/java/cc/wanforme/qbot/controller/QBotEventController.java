@@ -12,6 +12,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -34,6 +35,9 @@ import cc.wanforme.qbot.util.SimpleJackson;
 @Component
 public class QBotEventController {
 	private static final Logger log = LoggerFactory.getLogger(QBotEventController.class);
+	
+	@Autowired
+	private HandlerManager manager;
 	
 	@OnOpen
 	public void onOpen(Session session) {
@@ -74,7 +78,7 @@ public class QBotEventController {
 			
 			for (BaseComponent component : components) {
 				try {
-					HandlerManager.launchMessage(entity, component);
+					manager.launchMessage(entity, component);
 				} catch (Exception e) {
 					log.error("处理异常！", e);
 				}
