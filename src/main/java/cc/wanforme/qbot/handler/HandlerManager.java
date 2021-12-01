@@ -18,17 +18,18 @@ import cc.wanforme.qbot.entity.message.MessageEntity;
 @Service
 public class HandlerManager {
 
-	private static final List<BaseHandler> handlers = new CopyOnWriteArrayList<>();
+	private volatile List<BaseHandler> handlers = new CopyOnWriteArrayList<>();
 	
 	/** 注册
 	 * @param handler
 	 * @return
 	 */
-	public boolean register(BaseHandler handler) {
+	public synchronized boolean register(BaseHandler handler) {
 		return handlers.add(handler);
 	}
 	
-	/** 获取所有处理器*/
+	/** 获取所有处理器, <br>
+	 * 注：返回的是副本*/
 	public Set<BaseHandler> getHandlers() {
 		return new HashSet<BaseHandler>(handlers);
 	}
