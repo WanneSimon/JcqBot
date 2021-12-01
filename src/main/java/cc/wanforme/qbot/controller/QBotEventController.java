@@ -23,6 +23,7 @@ import cc.wanforme.qbot.cqextra.ExtraComponents;
 import cc.wanforme.qbot.entity.message.MessageEntity;
 import cc.wanforme.qbot.entity.type.EventPostType;
 import cc.wanforme.qbot.handler.HandlerManager;
+import cc.wanforme.qbot.util.MessageType;
 import cc.wanforme.qbot.util.SimpleJackson;
 
 /**
@@ -65,7 +66,8 @@ public class QBotEventController {
 		
 		if(Objects.equals( postType.asText(), 
 				EventPostType.MESSAGE.getValue())) {
-			MessageEntity entity = SimpleJackson.toObject(message, MessageEntity.class);
+//			MessageEntity entity = SimpleJackson.toObject(message, MessageEntity.class);
+			MessageEntity entity = MessageType.deserilizeMessage(root, message);
 			String messageText = entity.getMessage();
 			
 			List<BaseComponent> components = ExtraComponents.findComponents(messageText);

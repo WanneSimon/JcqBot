@@ -28,27 +28,6 @@ public class MessageEntity extends EventEntity{
 	private MessageSender sender;
 	// ==== 私聊和群聊共有 - 结束 ====
 
-	// ==== 仅私聊 ====
-	// 消息接收人 qq，也就是机器人的qq
-	private Long target_id;
-	// ==== 仅私聊  - 结束 ====
-
-	
-	// ==== 仅群聊 ====
-	// 群号
-	private String group_id;
-	// 未知，不清楚是什么
-	private String anonymous;
-	// 消息序列号？
-	private Long message_seq;
-	// ==== 仅群聊  - 结束====
-	
-	// ==== 仅频道 ====
-	// 频道
-	private String guild_id;
-	// 子频道
-	private String channel_id;
-	// ==== 仅频道 - 结束 ====
 	
 	public MessageEntity() {}
 
@@ -116,53 +95,4 @@ public class MessageEntity extends EventEntity{
 		this.sender = sender;
 	}
 
-	public Long getTarget_id() {
-		return target_id;
-	}
-
-	public void setTarget_id(Long target_id) {
-		this.target_id = target_id;
-	}
-
-	public String getGroup_id() {
-		return group_id;
-	}
-
-	public void setGroup_id(String group_id) {
-		this.group_id = group_id;
-	}
-
-	public String getAnonymous() {
-		return anonymous;
-	}
-
-	public void setAnonymous(String anonymous) {
-		this.anonymous = anonymous;
-	}
-
-	public Long getMessage_seq() {
-		return message_seq;
-	}
-
-	public void setMessage_seq(Long message_seq) {
-		this.message_seq = message_seq;
-	}
-
-	public String getGuild_id() {
-		return guild_id;
-	}
-
-	public void setGuild_id(String guild_id) {
-		this.guild_id = guild_id;
-	}
-
-	public String getChannel_id() {
-		return channel_id;
-	}
-
-	public void setChannel_id(String channel_id) {
-		this.channel_id = channel_id;
-	}
-	
-	
 }

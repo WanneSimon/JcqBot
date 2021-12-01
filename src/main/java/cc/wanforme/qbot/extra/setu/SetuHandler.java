@@ -38,7 +38,13 @@ public class SetuHandler extends MessageHandler{
 	}
 
 	@Override
-	public void handleMessage(MessageEntity entity) {
+	public void handleMessage(MessageEntity messageEntity) {
+		GroupMessage entity = null;
+		if(! (messageEntity instanceof GroupMessage)) {
+			return;
+		}
+
+		entity = (GroupMessage) messageEntity;
 		String groupId = entity.getGroup_id();
 		                                    // 备用   domi  未命名  沙雕
 //		List<Long> groups = Arrays.asList( 680481259L, 771829371L, 705436069L, 716971791L );
@@ -126,7 +132,11 @@ public class SetuHandler extends MessageHandler{
 	}
 	
 
-	private void replyMessage(MessageEntity source, String message) {
+	/** 快速回复
+	 * @param source
+	 * @param message
+	 */
+	private void replyMessage(GroupMessage source, String message) {
 		GroupMessage gm = new GroupMessage();
 		gm.setGroup_id(source.getGroup_id());
 		gm.setMessage(message);

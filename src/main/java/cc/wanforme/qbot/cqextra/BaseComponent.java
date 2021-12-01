@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra;
 
-import java.util.regex.Pattern;
-
 /**
  * @author wanne
  * 2021年8月6日

@@ -1,10 +1,12 @@
 package cc.wanforme.qbot.entity;
 
+import cc.wanforme.qbot.entity.message.MessageEntity;
+
 /**
  * @author wanne
  * 2021年8月7日
  */
-public class GroupMessage {
+public class GroupMessage extends MessageEntity {
 	// 群号
 	private String group_id;
 	// 要发送的内容
