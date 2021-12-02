@@ -10,7 +10,8 @@ import cc.wanforme.qbot.entity.EventEntity;
  */
 public interface BaseHandler {
 
-	/** 处理的类型 */
+	/** 处理的类型 <br/> 
+	 * 注: 返回 null 则表示不限制类型*/
 	Class<? extends BaseComponent> getHandleComponentType();
 	
 	/** 处理*/
