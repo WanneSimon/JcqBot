@@ -4,9 +4,26 @@ logging:
 
 cq-lang: zh-CN # 可修改成自定义的
 
+# 以下为 go-cqhttp 提供, 内部不做任何处理, 仅用于配置, 方便使用
+# 完整文档:  https://docs.go-cqhttp.org/api/
 go-cqhttp:
   host: http://127.0.0.1:5700
-  reply-group: /send_group_msg
+  # 群消息
+  reply-group: /send_group_msg  
+  # 私聊
+  reply-private: /send_private_msg 
+  # 撤回消息
+  delete-message: /delete_msg 
+  # 获取消息
+  get-message: /get_msg
+  # 获取图片信息
+  get-image: /get_image
+  # 获取合并转发内容
+  get-forward-message: /get_forward_msg
+  # 获取好友列表
+  get-friend-list: /get_friend_list
+  
+  
 
 setu:
    #  备用,   domi,  未命名,  未名卡片, 沙雕

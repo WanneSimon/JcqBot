@@ -28,6 +28,7 @@ public class JcqBotInitializer implements ApplicationRunner{
 	public void run(ApplicationArguments args) throws Exception {
 		this.initComponents();
 		this.initHandlers();
+		
 	}
 
 	// 注册组件

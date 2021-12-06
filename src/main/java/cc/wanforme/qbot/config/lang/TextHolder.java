@@ -9,7 +9,7 @@ public class TextHolder {
 	private static TextContainer container;
 	
 	public synchronized static void setContainer(TextContainer container) {
-		if(container!=null) {
+		if(TextHolder.container !=null) {
 			throw new RuntimeException("TextContainer can be set only once!");
 		}
 		TextHolder.container = container;
