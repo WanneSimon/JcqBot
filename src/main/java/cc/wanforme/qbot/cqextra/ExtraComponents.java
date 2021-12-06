@@ -43,6 +43,7 @@ public class ExtraComponents {
     	
     	Matcher matcher = CQPattern.matcher(message);
     	
+    	// 1. 使用正则表达式匹配任何类型的cq拓展代码
     	if(!matcher.find()) {
     		// 纯文本
     		list.add(new TextComponent(message));
@@ -50,7 +51,7 @@ public class ExtraComponents {
     	}
     	
     	do {
-    		// 使用大范围的匹配，找出字符串
+    		// 2. 使用组件注册的正则表达式，找到cq代码字符串
     		String str = matcher.group();
     		
     		for (Pattern p : components.keySet()) {
@@ -65,7 +66,7 @@ public class ExtraComponents {
 						Constructor<? extends BaseComponent> constructor = clazz.getConstructor(String.class);
 						BaseComponent component = constructor.newInstance(str);
 						
-						// 组件内部会重新分析，如果不是当前组件要处理的类型，就抛弃
+						// 3. cq拓展组件内部再一次分析，如果返回false，则不是当前组件
 						if(component.isMatched()) {
 							list.add(component);
 							added.add(clazz.getCanonicalName());

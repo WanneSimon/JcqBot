@@ -5,10 +5,11 @@ package cc.wanforme.qbot.cqextra;
  */
 public class ComponentNone extends BaseComponent {
 
-	public ComponentNone() {}
+	public ComponentNone(String mathcedString) {
+		super(mathcedString);
+	}
 
-	@Override
-	public boolean isMatched(String cqMessage) {
+	public boolean isMatched() {
 		return true;
 	}
 }
