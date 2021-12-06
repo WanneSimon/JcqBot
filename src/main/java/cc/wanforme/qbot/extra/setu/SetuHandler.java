@@ -16,6 +16,7 @@ import cc.wanforme.qbot.cqextra.builder.ImageSendBuilder;
 import cc.wanforme.qbot.entity.GroupMessage;
 import cc.wanforme.qbot.entity.message.MessageEntity;
 import cc.wanforme.qbot.entity.type.ImageEffectId;
+import cc.wanforme.qbot.entity.type.ImageType;
 import cc.wanforme.qbot.handler.MessageHandler;
 
 /** 样例
@@ -108,15 +109,18 @@ public class SetuHandler extends MessageHandler{
 					try {
 						String img = ImageSendBuilder.build()
 								.setUrl(node.getUrls().getOriginal())
-//						.setType(ImageType.SHOW)
+								.setFile(node.getTitle())
+								.setType(ImageType.SHOW)
 								.setEffect(ImageEffectId.NORMAL)
 								.create();
 						
 						try {
-							this.replyMessage(entity, msg+"\n"+img);
-						} catch (Exception e) {
 							this.replyMessage(entity, msg);
+							System.out.println(img);
 							this.replyMessage(entity, img);
+						} catch (Exception e) {
+//							this.replyMessage(entity, msg+"\n"+img);
+							log.error("图片发送失败", e);
 						}
 					} catch (Exception e) {
 						log.debug("显示图片失败！", e);
@@ -142,7 +146,7 @@ public class SetuHandler extends MessageHandler{
 		GroupMessage gm = new GroupMessage();
 		gm.setGroup_id(source.getGroup_id());
 		gm.setMessage(message);
-		gm.setAuto_escape(false);
+		gm.setAuto_escape(true);
 		restTemplate.postForObject("http://127.0.0.1:5700/send_group_msg", gm, String.class);
 	}
 	

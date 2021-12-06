@@ -9,11 +9,13 @@ import cc.wanforme.qbot.entity.type.ImageType;
  */
 public class ImageSendBuilder {
 	
+	private String file;
 	private String url;
-	private String type;
+	private String type; // flash, show
 	private String id;
 	
-	private final String cqData = "[CQ:image,file=%s,type=%s,id=%s]";
+	private final String cqData = "[CQ:image,type=%s,id=%s,file=%s,url=%s]";
+	private final String cqDataJson = "{\"type\":\"image\",\"data\":{\"type\":\"%s\",\"id\":\"%s\",\"file\":\"%s\",\"url\":\"%s\"}}";
 	
 	public static ImageSendBuilder build() {
 		return new ImageSendBuilder();
@@ -34,7 +36,16 @@ public class ImageSendBuilder {
 		return this;
 	}
 	
+	public ImageSendBuilder setFile(String file) {
+		this.file = file;
+		return this;
+	}
+	
 	public String create() {
-		return String.format(cqData, url, type == null ? "":type, id);
+		return String.format(cqData, type == null ? "":type, id, url, url);
+	}
+	
+	public String createJson() {
+		return String.format(cqDataJson, type == null ? "":type, id, url, url);
 	}
 }
