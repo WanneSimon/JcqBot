@@ -48,8 +48,7 @@ public class HandlerManager {
 	 */
 	public void launchMessage(MessageEntity message, BaseComponent component) {
 		for (BaseHandler h : handlers) {
-			if( h.getHandleComponentType() == null || 
-				  Objects.equals(h.getHandleComponentType().getCanonicalName(),
+			if( Objects.equals(h.getHandleComponentType().getCanonicalName(),
 					component.getClass().getCanonicalName()) ) {
 				h.handle(message);
 			}

@@ -4,6 +4,10 @@ logging:
 
 cq-lang: zh-CN # 可修改成自定义的
 
+go-cqhttp:
+  host: http://127.0.0.1:5700
+  reply-group: /send_group_msg
+
 setu:
    #  备用,   domi,  未命名,  未名卡片, 沙雕
    groups: 680481259, 771829371, 705436069, 591829811 #, 716971791
