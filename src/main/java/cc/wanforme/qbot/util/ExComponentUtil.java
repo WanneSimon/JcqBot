@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import cc.wanforme.qbot.cqextra.ExtraComponents;
+import cc.wanforme.qbot.cqextra.ExtraComponentCenter;
 import cc.wanforme.qbot.exception.JQException;
 
 /**
@@ -23,7 +23,7 @@ public class ExComponentUtil {
 	 */
 	@Deprecated
 	public static ObjectNode toJson(String cqCode) {
-		Matcher matcher = ExtraComponents.CQPattern.matcher(cqCode);
+		Matcher matcher = ExtraComponentCenter.CQPattern.matcher(cqCode);
 		if(matcher.matches()) {
 			String[] split = cqCode.split("\\,", 1);
 			if(split.length < 2) {

@@ -19,10 +19,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import cc.wanforme.qbot.cqextra.BaseComponent;
-import cc.wanforme.qbot.cqextra.ExtraComponents;
+import cc.wanforme.qbot.cqextra.ExtraComponentCenter;
 import cc.wanforme.qbot.entity.message.MessageEntity;
 import cc.wanforme.qbot.entity.type.EventPostType;
-import cc.wanforme.qbot.handler.HandlerManager;
+import cc.wanforme.qbot.handler.MessageHandlerManager;
 import cc.wanforme.qbot.util.MessageType;
 import cc.wanforme.qbot.util.SimpleJackson;
 
@@ -70,11 +70,11 @@ public class QBotEventController {
 			MessageEntity entity = MessageType.deserilizeMessage(root, message);
 			String messageText = entity.getMessage();
 			
-			List<BaseComponent> components = ExtraComponents.findComponents(messageText);
+			List<BaseComponent> components = ExtraComponentCenter.findComponents(messageText);
 			
 			for (BaseComponent component : components) {
 				try {
-					HandlerManager.getInstance().launchMessage(entity, component);
+					MessageHandlerManager.getInstance().launchMessage(entity, component);
 				} catch (Exception e) {
 					log.error("处理异常！", e);
 				}

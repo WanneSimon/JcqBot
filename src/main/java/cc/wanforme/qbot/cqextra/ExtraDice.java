@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra;
 
-import java.util.regex.Pattern;
-
 /** 名片组件，包括QQ用户名片和群名片。
  * @author wanne
  * @since 2021-08-06

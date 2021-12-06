@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra;
 
-import java.util.regex.Pattern;
-
 /**
  * 语音组件。
  *

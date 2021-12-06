@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
  * @author wanne
  * @since 2021-08-06
  */
-public class ExtraComponents {
-	private static final Logger log = LoggerFactory.getLogger(ExtraComponents.class);
+public class ExtraComponentCenter {
+	private static final Logger log = LoggerFactory.getLogger(ExtraComponentCenter.class);
 	
 	/** 大范围匹配，所有的 cq代码都是这样的 */
 	public static final Pattern CQPattern = Pattern.compile("(\\[CQ:.*?\\,.*?\\])");

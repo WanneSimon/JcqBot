@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra.richs;
 
-import java.util.regex.Pattern;
-
 import cc.wanforme.qbot.cqextra.BaseExtraCQComponent;
 
 /**
@@ -9,36 +7,36 @@ import cc.wanforme.qbot.cqextra.BaseExtraCQComponent;
  *
  * @author Taskeren
  */
-public class ExComponentRichNews extends BaseExtraCQComponent
-{
-    public ExComponentRichNews(String mathcedString) {
-		super(mathcedString);
-	}
+public class ExComponentRichNews extends BaseExtraCQComponent {
 
 	/**
-     * 页面名称
-     */
-     String title;
+	 * 页面名称
+	 */
+	String title;
 
-    /**
-     * 页面描述
-     */
-     String desc;
+	/**
+	 * 页面描述
+	 */
+	String desc;
 
-    /**
-     * 页面预览
-     */
-     String preview;
+	/**
+	 * 页面预览
+	 */
+	String preview;
 
-    /**
-     * APP标签
-     */
-     String tag;
+	/**
+	 * APP标签
+	 */
+	String tag;
 
-    /**
-     * 页面地址
-     */
-     String url;
+	/**
+	 * 页面地址
+	 */
+	String url;
+
+	public ExComponentRichNews(String mathcedString) {
+		super(mathcedString);
+	}
 
 	@Override
 	public String toCQCode() {

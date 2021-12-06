@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra;
 
-import java.util.regex.Pattern;
-
 import cc.wanforme.qbot.cqextra.richs.ExComponentRichMusic;
 import cc.wanforme.qbot.cqextra.richs.ExComponentRichNews;
 

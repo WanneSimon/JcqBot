@@ -1,7 +1,5 @@
 package cc.wanforme.qbot.cqextra;
 
-import java.util.regex.Pattern;
-
 /** 自带表情组件。
  * @author wanne
  * @since 2021-08-06

@@ -36,7 +36,7 @@ public class TextContainer {
 			if(properties!=null) {
 				wrapper = properties;
 			} else {
-				log.error("Language file load failed!");
+				log.error("Language file load failed! " + lang +" : "+langFile);
 			}
 		}  catch (IOException e) {
 			log.error(e.getMessage(), e);

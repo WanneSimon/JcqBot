@@ -16,15 +16,15 @@ import cc.wanforme.qbot.entity.message.MessageEntity;
  * 2021年8月6日
  */
 @Service
-public class HandlerManager {
-	private static HandlerManager instance = null;
+public class MessageHandlerManager {
+	private static MessageHandlerManager instance = null;
 	
 	private volatile List<BaseHandler> handlers = new CopyOnWriteArrayList<>();
 	
-	public HandlerManager() {
+	public MessageHandlerManager() {
 		instance = this;
 	}
-	public static HandlerManager getInstance() {
+	public static MessageHandlerManager getInstance() {
 		return instance;
 	}
 	
