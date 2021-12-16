@@ -18,6 +18,8 @@ import cc.wanforme.qbot.entity.message.MessageEntity;
 import cc.wanforme.qbot.entity.type.ImageEffectId;
 import cc.wanforme.qbot.entity.type.ImageType;
 import cc.wanforme.qbot.handler.MessageHandler;
+import cc.wanforme.qbot.util.FileNameUtil;
+import cc.wanforme.qbot.util.SimpleOkHttp;
 
 /** 样例
  * @author wanne
@@ -50,19 +52,9 @@ public class SetuHandler extends MessageHandler{
 		String groupId = entity.getGroup_id();
 		                                    // 备用   domi  未命名  沙雕
 //		List<Long> groups = Arrays.asList( 680481259L, 771829371L, 705436069L, 716971791L );
-//		if(!groups.contains(groupId)) { 
-//			return;
-//		}
 		boolean allow = true;
 		if(groups != null) {
 			allow = this.groups.contains(groupId);
-//			allow = false;
-//			for (String g : groups) {
-//				if( g == groupId ) {
-//					allow = true;
-//					break;
-//				}
-//			}
 		} 
 		
 		if(!allow) {
@@ -103,28 +95,13 @@ public class SetuHandler extends MessageHandler{
 					String msg = "Title："+node.getTitle()+"\nAuthor："+node.getAuthor()
 						+"\n"+node.getUrls().getOriginal();
 					
+					this.replyMessage(entity, msg);
+					
 					// 消息回传给机器人
 //					this.replyMessage(entity, msg);
 //					String img = "[CQ:image,url="+node.getUrls().getOriginal()+"]"+node.getUrls().getOriginal();
-					try {
-						String img = ImageSendBuilder.build()
-								.setUrl(node.getUrls().getOriginal())
-								.setFile(node.getTitle())
-								.setType(ImageType.SHOW)
-								.setEffect(ImageEffectId.NORMAL)
-								.create();
-						
-						try {
-							this.replyMessage(entity, msg);
-							System.out.println(img);
-							this.replyMessage(entity, img);
-						} catch (Exception e) {
-//							this.replyMessage(entity, msg+"\n"+img);
-							log.error("图片发送失败", e);
-						}
-					} catch (Exception e) {
-						log.debug("显示图片失败！", e);
-					}
+					this.replyImage(entity, node);
+//					this.replyImageWithTemp(entity, node);
 					return;
 				}
 			}
@@ -138,6 +115,50 @@ public class SetuHandler extends MessageHandler{
 	}
 	
 
+	private void replyImage(GroupMessage entity, ResNode node) {
+		try {
+			// 下载图片，手动发送
+		 	String imageUrl = node.getUrls().getOriginal();
+		 	
+			String img = ImageSendBuilder.build()
+					.setUrl(imageUrl)
+					.setFile(node.getTitle())
+					.setType(ImageType.SHOW)
+					.setEffect(ImageEffectId.NORMAL)
+					.createSimple();
+			System.out.println(img);
+			
+			this.replyMessage(entity, img);
+		} catch (Exception e) {
+//			this.replyMessage(entity, msg+"\n"+img);
+			log.error("图片发送失败", e);
+		}
+	}
+	
+	private void replyImageWithTemp(GroupMessage entity, ResNode node) {
+		try {
+			// 下载图片，手动发送
+		 	String imageUrl = node.getUrls().getOriginal();
+		 	String tempPath = node.getPid()+FileNameUtil.getSuffix(imageUrl);
+			SimpleOkHttp soh = new SimpleOkHttp();
+			soh.downloadGet(imageUrl, tempPath);
+		 	
+			String img = ImageSendBuilder.build()
+//					.setUrl(node.getUrls().getOriginal())
+					.setUrl(tempPath)
+					.setFile(node.getTitle())
+					.setType(ImageType.SHOW)
+					.setEffect(ImageEffectId.NORMAL)
+					.createSimple();
+			System.out.println(img);
+			
+			this.replyMessage(entity, img);
+		} catch (Exception e) {
+//			this.replyMessage(entity, msg+"\n"+img);
+			log.error("图片发送失败", e);
+		}
+	}
+	
 	/** 快速回复
 	 * @param source
 	 * @param message
@@ -146,7 +167,7 @@ public class SetuHandler extends MessageHandler{
 		GroupMessage gm = new GroupMessage();
 		gm.setGroup_id(source.getGroup_id());
 		gm.setMessage(message);
-		gm.setAuto_escape(true);
+		gm.setAuto_escape(false);
 		restTemplate.postForObject("http://127.0.0.1:5700/send_group_msg", gm, String.class);
 	}
 	

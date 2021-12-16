@@ -15,7 +15,10 @@ public class ImageSendBuilder {
 	private String id;
 	
 	private final String cqData = "[CQ:image,type=%s,id=%s,file=%s,url=%s]";
-	private final String cqDataJson = "{\"type\":\"image\",\"data\":{\"type\":\"%s\",\"id\":\"%s\",\"file\":\"%s\",\"url\":\"%s\"}}";
+	// [CQ:image,file=http://localhost:90/img/43831380_p0.jpg,cache=0]
+	// [CQ:image,file=http://localhost:90/img/ra2.gif]
+	private final String cqData2 = "[CQ:image,type=%s,file=%s,cache=0]";
+	private final String cqData3 = "[CQ:image,file=%s]";
 	
 	public static ImageSendBuilder build() {
 		return new ImageSendBuilder();
@@ -42,10 +45,13 @@ public class ImageSendBuilder {
 	}
 	
 	public String create() {
-		return String.format(cqData, type == null ? "":type, id, url, url);
+		return String.format(cqData, type == null ? "":type, id, file, url);
 	}
 	
-	public String createJson() {
-		return String.format(cqDataJson, type == null ? "":type, id, url, url);
+	public String create2() {
+		return String.format(cqData2, type == null ? "":type, url);
+	}
+	public String createSimple() {
+		return String.format(cqData3, url);
 	}
 }

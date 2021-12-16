@@ -25,8 +25,8 @@ public class TuringApiTest {
 		String url = "http://openapi.turingapi.com/openapi/api/v2";
 		
 		
-		SimpleOkHttp okHttp = new SimpleOkHttp();
-		okHttp.getAsnc(url, TuringApiTest::successTest, TuringApiTest::failTest);
+//		SimpleOkHttp okHttp = new SimpleOkHttp();
+//		okHttp.getAsnc(url, TuringApiTest::successTest, TuringApiTest::failTest);
 	}
 	
 	public static Boolean successTest (Response res) {
