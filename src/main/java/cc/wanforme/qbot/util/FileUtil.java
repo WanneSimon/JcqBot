@@ -136,7 +136,7 @@ public class FileUtil {
 		
 		int size = 2048;
 		try(FileOutputStream fos = new FileOutputStream(file)) {
-			for(int i=0; i<bs.length; i++) {
+			for(int i=0; i<bs.length; i+=size) {
 				int start = i;
 				int len = size;
 				

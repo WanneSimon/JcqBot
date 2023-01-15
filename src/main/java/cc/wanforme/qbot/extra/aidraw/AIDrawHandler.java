@@ -125,7 +125,7 @@ public class AIDrawHandler extends MessageHandler {
 					FileUtil.saveFile(bs, path);
 					
 					//System.out.println("publicHost: " + publicHost);
-					String tempUrl =  (publicHost + "/image/" +  URLEncoder.encode(path));
+					String tempUrl =  (publicHost + "/image?p=" +  URLEncoder.encode(path));
 					
 					this.replyImageWithTemp(entity, tempUrl);
 				}
