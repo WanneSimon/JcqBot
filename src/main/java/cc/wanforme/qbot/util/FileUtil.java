@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 
@@ -145,6 +147,70 @@ public class FileUtil {
 			}
 		}
 	}
+	
+	public static void downloadFile2Client(InputStream is, String name,
+			HttpServletRequest request, HttpServletResponse response) throws IOException{
+		downloadFile2Client(is, name, false, request, response);
+	}
+	
+	/** 下载文件，支持续传
+	 * @throws IOException */
+	public static void downloadFile2Client(String url, String name, boolean isOnline,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		URL u = new URL(url);
+		URLConnection connection = u.openConnection();
+		
+		response.setContentType("application/pdf");
+		if( isOnline ) {
+			response.setHeader("Content-Disposition", "inline; filename=\""+name+"\"");
+		} else {
+			response.setHeader("Content-Disposition", "attachment; filename=\""+name+"\"");
+		}
+		
+		// 续传，偏移指针
+		InputStream is = connection.getInputStream();
+		offsetPointer(is, request);
+		
+		byte[] bs = new byte[1024];
+		int len = 0;
+		while ( (len = is.read(bs)) != -1 ) {
+			response.getOutputStream().write(bs, 0, len);
+		}
+		
+		response.getOutputStream().flush();
+	}
+	
+	/** 下载文件，支持续传
+	 * @throws IOException */
+	public static void downloadFile2Client(InputStream is, String name, boolean isOnline,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		
+//		int index = name.lastIndexOf('.');
+//		if(index > 0) {
+//			response.setContentType(name.substring(index+1));
+//		} else {
+			response.setContentType("application/octet-stream");
+//		}
+		if( isOnline ) {
+			response.setHeader("Content-Disposition", "inline; filename=\""+name+"\"");
+		} else {
+			response.setHeader("Content-Disposition", "attachment; filename=\""+name+"\"");
+		}
+		
+		// 续传，偏移指针
+		offsetPointer(is, request);
+		
+		byte[] bs = new byte[1024];
+		int len = 0;
+		while ( (len = is.read(bs)) != -1 ) {
+			response.getOutputStream().write(bs, 0, len);
+		}
+		
+		response.getOutputStream().flush();
+	}
+
 	
 	public static void main(String[] args) {
 		String url = "https://i.pixiv.cat/img-original/img/2021/11/13/12/29/34/94101036_p0.png";

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import cc.wanforme.qbot.cqextra.ExtraAt;
 import cc.wanforme.qbot.cqextra.ExtraComponentCenter;
+import cc.wanforme.qbot.extra.aidraw.AIDrawHandler;
 import cc.wanforme.qbot.extra.setu.SetuHandler;
 import cc.wanforme.qbot.handler.MessageHandlerManager;
 
@@ -23,6 +24,8 @@ public class JcqBotInitializer implements ApplicationRunner{
 	private SetuHandler setuHandler;
 	@Autowired
 	private MessageHandlerManager manager;
+	@Autowired
+	private AIDrawHandler aiDrawHandler;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -39,6 +42,7 @@ public class JcqBotInitializer implements ApplicationRunner{
 	
 	private void initHandlers() {
 		manager.register(setuHandler);
+		manager.register(aiDrawHandler);
 	}
 	
 }

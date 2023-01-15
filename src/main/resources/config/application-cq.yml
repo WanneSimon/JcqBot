@@ -4,6 +4,11 @@ logging:
 
 cq-lang: zh-CN # 可修改成自定义的
 
+# 应用对外的 API 根路径
+#public-host: http://127.0.0.1:${server.port}${server.servlet.context-path}
+public-host: http://blog.wanforme.cc:19133${server.servlet.context-path}
+
+
 # 以下为 go-cqhttp 提供, 内部不做任何处理, 仅用于配置, 方便使用
 # 完整文档:  https://docs.go-cqhttp.org/api/
 go-cqhttp:
@@ -23,8 +28,12 @@ go-cqhttp:
   # 获取好友列表
   get-friend-list: /get_friend_list
   
-  
 
 setu:
+   #  备用,   domi,  未命名,  未名卡片, 沙雕
+   groups: 680481259, 771829371, 705436069, 591829811 #, 716971791
+aidraw:
+   aidraw-draw-url: http://127.0.0.1:7860/sdapi/v1/txt2img
+   keywords: ai
    #  备用,   domi,  未命名,  未名卡片, 沙雕
    groups: 680481259, 771829371, 705436069, 591829811 #, 716971791

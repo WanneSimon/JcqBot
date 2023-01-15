@@ -52,7 +52,7 @@ public class JcqBotApplication {
 			log.warn("The host name could not be determined, using `localhost` as fallback");
 		}
 
-		serverFullAddress = protocol + hostAddress + serverPort + contextPath;
+		serverFullAddress = protocol +"://" + hostAddress +":" + serverPort + contextPath;
 
 		log.info(
 				"\n----------------------------------------------------------"
